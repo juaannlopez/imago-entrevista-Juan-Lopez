@@ -5,6 +5,8 @@ import javax.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Service;
 
 import com.imagosur.dev.proyent.dao.Dao;
@@ -14,6 +16,8 @@ import com.imagosur.dev.proyent.entity.Empleado;
 import com.imagosur.dev.proyent.entity.EmpleadoFilter;
 
 @Service
+@Scope(proxyMode = ScopedProxyMode.INTERFACES)
+@Transactional
 public class EmpleadoServiceImpl implements EmpleadoService {
 
     @Autowired
@@ -39,5 +43,12 @@ public class EmpleadoServiceImpl implements EmpleadoService {
     public void update(Empleado empleado) {
         logger.trace("update");
         dao.update(empleado.getId(), empleado);
+    }
+
+    @Override
+    public void delete(Long id) {
+
+        logger.trace("delete ");
+        dao.delete(id);
     }
 }

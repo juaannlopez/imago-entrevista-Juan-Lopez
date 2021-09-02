@@ -38,6 +38,24 @@
 							</div>
 						</div>
 						<div class="form-group">
+							<label for="edad" class="col-md-2 control-label">Edad</label>
+							<div class="col-md-4">
+								<input type="text" class="form-control" id="edad" placeholder="Edad">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="numeroDocumento" class="col-md-2 control-label">Número de Documento</label>
+							<div class="col-md-4">
+								<input type="text" class="form-control" id="numeroDocumento" placeholder="Número de Documento">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="tipoDocumento" class="col-md-2 control-label">Tipo de Documento</label>
+							<div class="col-md-4">
+								<input type="text" class="form-control" id="tipoDocumento" placeholder="Tipo de Documento">
+							</div>
+						</div>
+						<div class="form-group">
 							<div class="col-md-offset-2 col-md-4">
 								<button type="button" id="cancelar" class="btn btn-default" style="display:none">Cancelar</button>
 								<button type="button" id="guardar" class="btn btn-primary" style="display:none">Guardar</button>
@@ -108,6 +126,9 @@ $(function(){
 		$("input#id").val(null);
 		$("input#legajo").val(null);
 		$("input#nombreYApellido").val(null);
+		$("input#edad").val(null);
+		$("input#numeroDocumento").val(null);
+		$("input#tipoDocumento").val(null);
 	}
 	
 	function abrirEdicion(empleado){
@@ -119,12 +140,18 @@ $(function(){
 		$("input#id").val(empleado.id);
 		$("input#legajo").val(empleado.legajo);
 		$("input#nombreYApellido").val(empleado.nombreYApellido);
+		$("input#edad").val(empleado.edad);
+		$("input#numeroDocumento").val(empleado.numeroDocumento);
+		$("input#tipoDocumento").val(empleado.tipoDocumento);
 	}
 	
 	function cerrarEdicion(){
 		$("div#edicion").hide();
 		$("input#legajo").val(null);
 		$("input#nombreYApellido").val(null);
+		$("input#edad").val(null);
+		$("input#numeroDocumento").val(null);
+		$("input#tipoDocumento").val(null);
 		$("button#agregar-nuevo").prop("disabled",false);
 	}
 	
@@ -134,7 +161,15 @@ $(function(){
 			message: "¿Está seguro que desea eliminar al empleado?",
 			size: "small",
 			callback: function(confirmed){
-					bootbox.alert("Sin implementar");
+				//	bootbox.alert("Sin implementar");
+				$.ajax({
+					url: [[@{/api/empleados/}]] +id,
+				method: "DELETE",
+						contentType: "application/json; charset=utf-8",
+			}).done(function(){
+					cerrarEdicion();
+					refreshTable();
+				}).fail(handleFailure);
 			}
 		});
 	}
@@ -193,7 +228,12 @@ $(function(){
 		return {
 			id: $("input#id").val(),
 			legajo: $("input#legajo").val(),
-			nombreYApellido: $("input#nombreYApellido").val()
+			nombreYApellido: $("input#nombreYApellido").val(),
+			edad: $("input#edad").val(),
+			numeroDocumento: $("input#numeroDocumento").val(),
+			tipoDocumento: $("input#tipoDocumento").val(),
+
+
 		}
 	}
 });

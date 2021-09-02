@@ -45,9 +45,11 @@ public class EmpleadosController {
         return ResponseEntity.ok(uiResult);
     }
 
-    @DeleteMapping("/api/empleados/{id:\\d+}")
+    @DeleteMapping("/api/empleados/{id}")
     public ResponseEntity<?> delete(@PathVariable(name = "id") Long idEmpleado) {
-        return ResponseEntity.status(HttpStatus.NOT_IMPLEMENTED).build();
+        logger.debug("delete");
+        empleadoService.delete(idEmpleado);
+        return ResponseEntity.status(HttpStatus.OK).build();
     }
 
     @PostMapping("/api/empleados")

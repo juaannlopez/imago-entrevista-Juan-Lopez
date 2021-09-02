@@ -5,8 +5,9 @@ import java.util.List;
 import com.imagosur.dev.proyent.dao.ResultPage;
 
 public class BootstrapTableResultPage<T> {
-    private List<T> rows;
     private Long total;
+    private List<T> rows;
+
 
     public static <T> BootstrapTableResultPage<T> fromResultPage(ResultPage<T> resultPage) {
         BootstrapTableResultPage<T> uiResultPage = new BootstrapTableResultPage<>();

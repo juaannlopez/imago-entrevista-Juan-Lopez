@@ -12,4 +12,6 @@ public interface EmpleadoService {
     void insert(Empleado empleado);
     
     void update(Empleado empleado);
+
+    void delete(Long id);
 }

@@ -42,10 +42,12 @@ public class DaoEntityManagerImpl<T, K> implements Dao<T, K> {
         }
         List<T> results = tQuery.getResultList();
         long total = pageOptions != null ? this.count(filter) : results.size();
+
         ResultPage<T> resultPage = new ResultPage<T>();
         resultPage.setItems(results);
         resultPage.setPage(pageOptions);
         resultPage.setTotal(total);
+        System.out.print("el total es " +total);
         return resultPage;
     }
 
