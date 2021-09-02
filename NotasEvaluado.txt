@@ -1,5 +1,7 @@
 ********************PROPUESTAS DE MEJORA*********************
-
+cambiar front end a otra tecnologia vue o angular para ganar mejor portabilidad  
+agregar manejo de excepciones personalizadas 
+cambiar cirteria por hibernate jpa 
 
 *************************************************************
 
@@ -7,7 +9,8 @@
 
 
 ******************ACLARACIONES RESOLUCION********************
-
+se agrega @Scope(proxyMode = ScopedProxyMode.INTERFACES)
+@Transactional para toda la clase service en lugar de agregarselo solo al metodo ya que todos los metodos son transaccionales
 
 
 *************************************************************
