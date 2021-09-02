@@ -22,6 +22,12 @@ public class Empleado {
     @Column(name = "edad")
     private Integer edad;
 
+    @Column(name = "numero_documento")
+    private Integer numeroDocumento;
+
+    @Column(name = "tipo_documento")
+    private String tipoDocumento;
+
     private transient String cargo;
 
     public Long getId() {
@@ -63,4 +69,12 @@ public class Empleado {
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
+
+    public Integer getNumeroDocumento() { return numeroDocumento; }
+
+    public void setNumeroDocumento(Integer numeroDocumento) { this.numeroDocumento = numeroDocumento; }
+
+    public String getTipoDocumento() { return tipoDocumento; }
+
+    public void setTipoDocumento(String tipoDocumento) { this.tipoDocumento = tipoDocumento; }
 }
